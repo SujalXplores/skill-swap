@@ -10,10 +10,6 @@ const skillSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  category: {
-    type: String,
-    required: true
-  },
   description: {
     type: String,
     required: true
@@ -28,8 +24,14 @@ const skillSchema = new mongoose.Schema({
     enum: ['offered', 'requested'],
     required: true
   },
-  images: [String],
-  portfolioLinks: [String]
+  category: {
+    type: String,
+    required: true
+  },
+  portfolioLinks: [{
+    type: String,
+    required: false
+  }]
 }, {
   timestamps: true
 });
