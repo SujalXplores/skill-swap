@@ -60,7 +60,6 @@ export default function SignupPage() {
 
       router.push('/auth/login');
     } catch (error) {
-      console.error('Signup error:', error);
       toast({
         title: "Error",
         description: error instanceof Error ? error.message : 'Failed to create account',

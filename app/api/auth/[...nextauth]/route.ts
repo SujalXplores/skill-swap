@@ -39,11 +39,12 @@ const handler = NextAuth({
     })
   ],
   session: {
-    strategy: 'jwt'
+    strategy: 'jwt',
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: '/auth/login',
-    signUp: '/auth/signup',
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -54,7 +55,7 @@ const handler = NextAuth({
     },
     async session({ session, token }) {
       if (token) {
-        session.user.id = token.id;
+        session.user.id = token.id as string;
       }
       return session;
     }

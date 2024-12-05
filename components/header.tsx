@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { useSession } from 'next-auth/react';
-import { UserNav } from './user-nav';
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react";
+import { UserNav } from "./user-nav";
+import { ThemeToggle } from "./theme-toggle";
 
 export function Header() {
   const { data: session } = useSession();
@@ -14,18 +15,17 @@ export function Header() {
         <Link href="/" className="font-semibold text-xl">
           SkillSwap
         </Link>
-        
+
         <nav className="flex items-center gap-6">
-          <Link href="/skills" className="text-muted-foreground hover:text-foreground">
+          <Link
+            href="/skills"
+            className="text-muted-foreground hover:text-foreground"
+          >
             Browse Skills
           </Link>
+          <ThemeToggle />
           {session ? (
-            <>
-              <Link href="/messages" className="text-muted-foreground hover:text-foreground">
-                Messages
-              </Link>
-              <UserNav />
-            </>
+            <UserNav />
           ) : (
             <div className="flex gap-4">
               <Button variant="ghost" asChild>
